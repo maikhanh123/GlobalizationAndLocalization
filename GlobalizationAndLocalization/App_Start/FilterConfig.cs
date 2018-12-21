@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using GlobalizationAndLocalization.Filters;
 
 namespace GlobalizationAndLocalization
 {
@@ -8,6 +9,9 @@ namespace GlobalizationAndLocalization
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+
+            //Global level
+            filters.Add(new CustomExceptionFilter());
         }
     }
 }
