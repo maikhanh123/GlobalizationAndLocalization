@@ -25,6 +25,14 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="language-en" class="nav-item">
+                        <a class="nav-link" href="#" onclick="changeLanguage('en')">EN</a>
+                    </li>
+                    <li id="language-vi" class="nav-item">
+                        <a class="nav-link" href="#" onclick="changeLanguage('vi')">VI</a>
+                    </li>
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -40,5 +48,46 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script>
+        // https://www.w3schools.com/js/js_cookies.asp
+        function getCookie(cname) {
+            var name = cname + "=";
+            console.log(document.cookie);
+            
+            //var decodedCookie = decodeURIComponent(document.cookie);
+            //return decodedCookie.substring(decodedCookie.length, name.length);
+
+            var cookieLaguage = document.cookie;
+            return decodedCookie.substring(cookieLaguage.length, name.length);
+
+            //console.log(decodedCookie);
+            //var ca = decodedCookie.split(';');
+            //for (var i = 0; i < ca.length; i++) {
+            //    var c = ca[i];
+                //while (c.charAt(0) == ' ') {
+                //    c = c.substring(1);
+                //}
+            //    console.log(c.indexOf(name));
+            //    if (c.indexOf(name) == 0) {
+            //        return c.substring(name.length, c.length);
+            //    }
+            //}
+            //return "";
+        }
+
+
+        function changeLanguage(lang) {
+            javascript: document.cookie = 'language=' + lang;
+            location.reload();
+        }
+
+        var language = getCookie('language');
+        if (language === 'en') {
+            document.getElementById('language-en').className = 'nav-item active';
+        } else {
+            document.getElementById('language-vi').className = 'nav-item active';
+        }
+    </script>
 </body>
 </html>
